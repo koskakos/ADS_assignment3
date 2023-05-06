@@ -31,11 +31,11 @@ public class MyHashTable<K, V> {
     }
 
     private int hash(K key) {
-        return key.hashCode() % M;
+        return (key.hashCode() & 0x7fffffff) % M;
     }
 
     public void put(K key, V value) {
-        if((float) size / M > 0.75f) rehash();
+        if((float) size / M > 0.75f) resize();
         size++;
         int hash = hash(key);
         HashNode<K, V> head = chainArray[hash];
@@ -117,7 +117,7 @@ public class MyHashTable<K, V> {
         return null;
     }
 
-    private void rehash() {
+    private void resize() {
         M = M * 2;
         Stack<HashNode<K, V>> nodes = new Stack<>();
 

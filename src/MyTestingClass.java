@@ -17,6 +17,6 @@ public class MyTestingClass {
         for(int i = 0; i < secondString.length(); i++) {
             secondHash = 31 * secondHash + secondString.charAt(i);
         }
-        return Math.abs(secondHash + firstHash);
+        return secondHash + firstHash;
     }
 }
